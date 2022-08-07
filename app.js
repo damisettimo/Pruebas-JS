@@ -128,7 +128,7 @@ const agregarAlCarrito = (prodId) => {
     } else { //SE AGREGA EL PRODUCTO AL CARRITO En Caso de que no este, Agrego al carrito
         const item = stockProductos.find((prod) => prod.id === prodId)//Trabaja con las ID
         //Una vez obtenida la ID, hago un push para agregarlo al carrito
-        carrito.push(item)
+        carrito.push(prodId)
     }
     //Va a buscar el item, agregarlo al carrito y llama a la funcion actualizarCarrito, que recorre
     //el carrito y se ve.
