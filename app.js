@@ -16,6 +16,7 @@ const cantidad = document.getElementById('cantidad')
 const precioTotal = document.getElementById('precioTotal')
 const cantidadTotal = document.getElementById('cantidadTotal')
 
+let stockProductos = []
 let carrito = []
 
 
@@ -77,8 +78,8 @@ botonComprar.addEventListener('click', () => {
 //Agregando etiquetas a HTML
 fetch("./stock.json")
 .then(response => response.json())
-.then(function (stockProductos) {
-        stockProductos.forEach((prod) => {
+.then(function (stockJson) {
+        stockJson.forEach((prod) => {
             const div = document.createElement('div');
             div.classList.add('producto');
             div.innerHTML = `
@@ -90,9 +91,13 @@ fetch("./stock.json")
             <button id="agregar${prod.id}" class="boton-agregar">Agregar <i class="fas fa-shopping-cart"></i></button>
 
             `;
+
+            stockProductos.push(prod)
+
+            console.log (stockProductos)
             contenedorProductos.appendChild(div);
 
-            const boton = document.getElementById(`agregar${prod.id}`);
+            let boton = document.getElementById(`agregar${prod.id}`);
 
 
             boton.addEventListener('click', () => {
@@ -128,7 +133,7 @@ const agregarAlCarrito = (prodId) => {
     } else { //SE AGREGA EL PRODUCTO AL CARRITO En Caso de que no este, Agrego al carrito
         const item = stockProductos.find((prod) => prod.id === prodId)//Trabaja con las ID
         //Una vez obtenida la ID, hago un push para agregarlo al carrito
-        carrito.push(prodId)
+        carrito.push(item)
     }
     //Va a buscar el item, agregarlo al carrito y llama a la funcion actualizarCarrito, que recorre
     //el carrito y se ve.
