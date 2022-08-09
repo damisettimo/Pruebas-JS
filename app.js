@@ -101,7 +101,7 @@ fetch("./stock.json")
 
 
             boton.addEventListener('click', () => {
-
+                console.log (prod.id)
                 agregarAlCarrito(prod.id);
                 Swal.fire({
                     title: 'Excelente!',
@@ -140,6 +140,7 @@ const agregarAlCarrito = (prodId) => {
     actualizarCarrito() //SE LLAMA A LA FUNCION QUE SE CREO CADA VEZ Q SE 
     //MODIFICA EL CARRITO
 }
+console.log("hola" + carrito )
 //agregarAlCarrito(1) //Se pasa el ID por parametro. 
 
 const eliminarDelCarrito = (prodId) => {
